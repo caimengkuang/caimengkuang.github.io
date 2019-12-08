@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title>使用hexo搭建博客</title>
+    <url>/2019/12/08/%E4%BD%BF%E7%94%A8hexo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/</url>
+    <content><![CDATA[<h2 id="一、安装hexo"><a href="#一、安装hexo" class="headerlink" title="一、安装hexo"></a>一、安装hexo</h2><p>1.安装node</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">brew install node</span></pre></td></tr></table></figure>
+<p>2.npm更改淘宝镜像源</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">npm install -g cnpm --registry&#x3D;https:&#x2F;&#x2F;registry.npm.taobao.org</span></pre></td></tr></table></figure>
+<p>3.安装hexo</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">cnpm install -g hexo-cli</span></pre></td></tr></table></figure>
+<h2 id="二、hexo使用"><a href="#二、hexo使用" class="headerlink" title="二、hexo使用"></a>二、hexo使用</h2><h3 id="1-初始化hexo项目并在本地使用"><a href="#1-初始化hexo项目并在本地使用" class="headerlink" title="1.初始化hexo项目并在本地使用"></a>1.初始化hexo项目并在本地使用</h3><ol>
+<li>创建文件夹<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">mkdir blog</span></pre></td></tr></table></figure></li>
+<li>初始化一个hexo项目<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">cd blog</span></pre></td></tr><tr><td class="code"><pre><span class="line">hexo init</span></pre></td></tr></table></figure></li>
+<li>启动hexo<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">hexo server</span></pre></td></tr></table></figure></li>
+<li>访问<br>在页面中打开 localhost:4000</li>
+</ol>
+<h3 id="2-创建第一个blog"><a href="#2-创建第一个blog" class="headerlink" title="2.创建第一个blog"></a>2.创建第一个blog</h3><ol>
+<li>创建一篇博客(在blog目录下)<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">hexo new &quot;第一篇文章&quot;</span></pre></td></tr></table></figure></li>
+<li>修改第一篇文章.md中的内容(地址在执行完hexo new命令后出现)</li>
+<li>生成静态文件(在blog目录下执行)<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">hexo generate</span></pre></td></tr></table></figure></li>
+<li>启动hexo<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">hexo server</span></pre></td></tr></table></figure></li>
+<li>访问<br>在页面中打开 localhost:4000</li>
+</ol>
+<h3 id="3-修改模板"><a href="#3-修改模板" class="headerlink" title="3.修改模板"></a>3.修改模板</h3><ol>
+<li>进行hexo项目下<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">cd blog</span></pre></td></tr></table></figure></li>
+<li>获取模板next<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">mkdir themes&#x2F;next</span></pre></td></tr><tr><td class="code"><pre><span class="line">curl -s https:&#x2F;&#x2F;api.github.com&#x2F;repos&#x2F;theme-next&#x2F;hexo-theme-next&#x2F;releases&#x2F;latest | grep tarball_url | cut -d &#39;&quot;&#39; -f 4 | wget -i - -O- | tar -zx -C themes&#x2F;next --strip-components&#x3D;1</span></pre></td></tr></table></figure></li>
+<li>修改blog下的_config.yml文件<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">theme: next</span></pre></td></tr></table></figure></li>
+<li>启动hexo<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">hexo server</span></pre></td></tr></table></figure></li>
+<li>访问<br>在页面中打开 localhost:4000</li>
+</ol>
+<h3 id="4-结合github使用hexo"><a href="#4-结合github使用hexo" class="headerlink" title="4.结合github使用hexo"></a>4.结合github使用hexo</h3><ol>
+<li>在GitHub上创建一个仓库 blog<br>注意:仓库名一定为：你的用户名.github.io.比如: 我的用户名为 caimengkuang ,则项目名为 caimengkuang.github.io</li>
+<li>安装hexo-deployer-git插件<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">cnpm install --save hexo-deployer-git</span></pre></td></tr></table></figure></li>
+<li>修改blog文件_config.yml文件<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">deploy:</span></pre></td></tr><tr><td class="code"><pre><span class="line">  type: git</span></pre></td></tr><tr><td class="code"><pre><span class="line">  repo: git@github.com:caimengkuang&#x2F;blog.git</span></pre></td></tr><tr><td class="code"><pre><span class="line">  branch: master</span></pre></td></tr></table></figure>
+其中repo为第一步创建的仓库地址</li>
+<li>将项目发布到github仓库上<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">hexo deploy</span></pre></td></tr></table></figure>
+注:deploy后可能需要等一段时间才能生效</li>
+</ol>
+<h2 id="三、hexo高级玩法"><a href="#三、hexo高级玩法" class="headerlink" title="三、hexo高级玩法"></a>三、hexo高级玩法</h2><h3 id="1-语法"><a href="#1-语法" class="headerlink" title="1.语法"></a>1.语法</h3><ol>
+<li>hexo new &lt;==&gt; hexo n</li>
+<li>hexo server &lt;==&gt; hexo s</li>
+<li>hexo deploy &lt;==&gt; hexo d</li>
+<li>hexo generate &lt;==&gt; hexo g</li>
+<li>hexo clean</li>
+</ol>
+<h3 id="2-个人主页"><a href="#2-个人主页" class="headerlink" title="2.个人主页"></a>2.个人主页</h3><ol>
+<li><p>个人信息设置</p>
+<ul>
+<li><p>标题、作者、描述、站点名、语言、时区等信息修改:<br>修改blog目录下的_config.yml文件</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># Site</span></pre></td></tr><tr><td class="code"><pre><span class="line">title: xxx</span></pre></td></tr><tr><td class="code"><pre><span class="line">subtitle: &#39;&#39;</span></pre></td></tr><tr><td class="code"><pre><span class="line">description: xxx</span></pre></td></tr><tr><td class="code"><pre><span class="line">keywords:</span></pre></td></tr><tr><td class="code"><pre><span class="line">author: xx</span></pre></td></tr><tr><td class="code"><pre><span class="line">language: zh-Hans</span></pre></td></tr><tr><td class="code"><pre><span class="line">timezone: Asia&#x2F;Shanghai</span></pre></td></tr></table></figure>
+</li>
+<li><p>github地址、邮箱:<br>修改blog/themes/next 目录下的_config.yml文件</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">social:</span></pre></td></tr><tr><td class="code"><pre><span class="line">  GitHub: https:&#x2F;&#x2F;github.com&#x2F;xxx || github</span></pre></td></tr><tr><td class="code"><pre><span class="line">  E-Mail: xxx@aliyun.com || envelope</span></pre></td></tr></table></figure></li>
+<li><p>注意所有冒号后面都需要添加一个空格</p>
+</li>
+</ul>
+</li>
+</ol>
+<h3 id="3-nexT高级玩法指南"><a href="#3-nexT高级玩法指南" class="headerlink" title="3.nexT高级玩法指南"></a>3.<a href="https://theme-next.iissnan.com/theme-settings.html" target="_blank" rel="noopener">nexT高级玩法指南</a></h3>]]></content>
+      <categories>
+        <category>其他</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>中台学习第一篇</title>
+    <url>/2019/12/08/%E4%B8%AD%E5%8F%B0%E5%AD%A6%E4%B9%A0%E7%AC%AC%E4%B8%80%E7%AF%87/</url>
+    <content><![CDATA[<h2 id="第一章"><a href="#第一章" class="headerlink" title="第一章"></a>第一章</h2>]]></content>
+      <categories>
+        <category>分布式</category>
+      </categories>
+      <tags>
+        <tag>中台</tag>
+      </tags>
+  </entry>
+</search>
